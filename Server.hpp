@@ -9,17 +9,21 @@
 #include <vector>
 
 class Server {
-private:
+protected:
 	int							socket_fd;
 	std::vector<struct pollfd>	fds;
+	struct pollfd				accept_poll_fd;
 
 public:
+	typedef int (*handler_fn)();
+
 	explicit Server(int port);
 	virtual ~Server();
 
 	Server(Server const& other) = delete;
 	Server& operator=(Server const&) = delete;
 
+	virtual int main_loop();
 };
 
 
