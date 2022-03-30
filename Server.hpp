@@ -15,7 +15,6 @@ protected:
 	struct pollfd				accept_poll_fd;
 
 public:
-	typedef int (*handler_fn)();
 
 	explicit Server(int port);
 	virtual ~Server();
@@ -24,6 +23,8 @@ public:
 	Server& operator=(Server const&) = delete;
 
 	virtual int main_loop();
+	virtual void handler(int fd, char* buf, std::size_t recv_ret);
+	virtual void pre_handler();
 };
 
 

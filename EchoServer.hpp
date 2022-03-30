@@ -9,12 +9,13 @@
 #include <fstream>
 #include "Server.hpp"
 
-class EchoServer : protected Server {
+class EchoServer : public Server {
 public:
 	EchoServer(int port);
 	virtual ~EchoServer() = default;
 
-	int main_loop() override;
+protected:
+	void handler(int fd, char *buf, std::size_t recv_ret) override;
 };
 
 

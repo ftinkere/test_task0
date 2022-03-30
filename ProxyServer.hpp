@@ -8,19 +8,20 @@
 
 #include "Server.hpp"
 
-class ProxyServer : protected Server {
+class ProxyServer : public Server {
 protected:
-	int							destination_fd;
+	std::vector<struct pollfd>	dest_fds;
 	int							log_fd;
 
-	void proxy(char* data, size_t len);
-
+	int add_dest();
 public:
 	ProxyServer(int listen_port, char* destination_addr, int destination_port);
 	ProxyServer(int listen_port, char* destination_addr, int destination_port, char* log_file);
 	virtual ~ProxyServer();
 
-	int main_loop();
+	void handler(int fd, char* buf, std::size_t recv_ret) override;
+
+	void pre_handler() override;
 };
 
 
