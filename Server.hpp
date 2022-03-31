@@ -10,9 +10,7 @@
 
 class Server {
 protected:
-	int							socket_fd;
-	std::vector<struct pollfd>	fds;
-	struct pollfd				accept_poll_fd;
+
 
 public:
 
@@ -24,7 +22,7 @@ public:
 
 	virtual int main_loop();
 	virtual void handler(int fd, char* buf, std::size_t recv_ret);
-	virtual void pre_handler();
+	virtual void post_accepthandler();
 };
 
 
