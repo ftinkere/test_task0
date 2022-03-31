@@ -4,4 +4,3 @@ project(test_task)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(proxy_server main_proxy.cpp ProxyServer.cpp ProxyServer.hpp)
-add_executable(test ProxyServer.cpp ProxyServer.hpp)
