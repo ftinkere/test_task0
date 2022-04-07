@@ -6,8 +6,9 @@
 #define TEST_TASK_PROXYSERVER_HPP
 
 #include <arpa/inet.h>
+#include <poll.h>
 #include <map>
-#include "Server.hpp"
+#include <vector>
 
 class ProxyServer {
 protected:
@@ -22,7 +23,7 @@ protected:
 
 	struct sockaddr_in destination;
 
-	int accept_conn();
+	int accept_handler();
 	void handler(struct pollfd& conn_in, struct pollfd& conn_out);
 
 public:
